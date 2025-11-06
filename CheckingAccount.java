@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class CheckingAccount implements HasMenu{
     private double balance;
     private boolean keepGoing;
-    Scanner input = new Scanner(System.in);
+    
 
     public CheckingAccount(){ 
         System.out.println("Checking Account Created");
@@ -37,7 +37,7 @@ public class CheckingAccount implements HasMenu{
         if(withdrawal < this.balance){
             this.balance = this.balance - withdrawal; 
         }else {
-            System.out.println("Try a little less.")
+            System.out.println("Try a little less.");
         }
         System.out.println(String.format("Your new balance is: %s", getBalanceString()));
     }
@@ -49,26 +49,29 @@ public class CheckingAccount implements HasMenu{
         double value; 
         while (keepGoing){
         System.out.printf("Account Menu %n Choose a Menu Option: %n 0) quit %n 1) check balance %n 2) make a deposit %n 3) make a withdrawal %n ");
-        value = getdouble();
+        value = getDouble();
             if(value == 0){
-
-                else if(value == 1){
-
-
+                keepGoing = false;
+                System.out.println("It's so Joever.");
+                }else if(value == 1){
+                    checkBalance();
                 }else if(value == 2){
-
-
+                    System.out.println("How much would you like to deposit?");
+                    value = getDouble();
+                    makeDeposit(value);
                 }else if(value == 3){
-
+                    System.out.println("How much would you like to withdrawal?");
+                    value = getDouble();
+                    makeWithdrawal(value);
                 }else{
-
-
+                    System.out.println("Hmmmm.. That doesn't seem like an option.");
                 }
             }
         }
-    }
     public double getDouble(){
+        Scanner input = new Scanner(System.in);
         boolean isDouble = true;
+        double value = 0;
         while (isDouble) {
             System.out.print("Enter a number: ");
             if (input.hasNextDouble()) {  
@@ -93,9 +96,8 @@ public class CheckingAccount implements HasMenu{
         a.makeDeposit(33);
         b.makeWithdrawal(2);
         a.start();
+        a.checkBalance();
     }
 
-    
 }
-
 
