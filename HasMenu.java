@@ -2,7 +2,7 @@
 public interface HasMenu  {
 
 void start();
-void menu();
+String menu();
 
 
 }

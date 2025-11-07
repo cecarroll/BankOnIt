@@ -43,31 +43,37 @@ public class CheckingAccount implements HasMenu{
     }
     public void start (){
         keepGoing = true;
-        menu();
-    }
-    public void menu(){
-        double value; 
-        while (keepGoing){
-        System.out.printf("Account Menu %n Choose a Menu Option: %n 0) quit %n 1) check balance %n 2) make a deposit %n 3) make a withdrawal %n ");
-        value = getDouble();
-            if(value == 0){
+        String response;
+        double value;
+        while(keepGoing){
+            response = menu();
+            if(response.equals("0")){
                 keepGoing = false;
                 System.out.println("It's so Joever.");
-                }else if(value == 1){
-                    checkBalance();
-                }else if(value == 2){
-                    System.out.println("How much would you like to deposit?");
-                    value = getDouble();
-                    makeDeposit(value);
-                }else if(value == 3){
-                    System.out.println("How much would you like to withdrawal?");
-                    value = getDouble();
-                    makeWithdrawal(value);
-                }else{
-                    System.out.println("Hmmmm.. That doesn't seem like an option.");
-                }
-            }
+        }else if(response.equals("1")){
+            checkBalance();
+        }else if(response.equals("2")){
+            System.out.println("How much would you like to deposit?");
+            value = getDouble();
+            makeDeposit(value);
+        }else if(response.equals("3")){
+            System.out.println("How much would you like to withdrawal?");
+            value = getDouble();
+            makeWithdrawal(value);
+        }else{
+            System.out.println("Hmmmm.. That doesn't seem like an option.");
         }
+        }
+    }
+
+    public String menu(){
+        Scanner input = new Scanner(System.in);
+        
+        System.out.printf("Account Menu %n Choose a Menu Option: %n 0) quit %n 1) check balance %n 2) make a deposit %n 3) make a withdrawal %n ");
+        String value = input.next(); 
+        return value;
+    }
+    
     public double getDouble(){
         Scanner input = new Scanner(System.in);
         boolean isDouble = true;
@@ -98,6 +104,7 @@ public class CheckingAccount implements HasMenu{
         a.start();
         a.checkBalance();
     }
+    
 
 }
 
